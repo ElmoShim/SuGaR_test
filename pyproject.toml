@@ -8,11 +8,9 @@ dependencies = [
         "iopath>=0.1.10",
         "nvdiffrast>=0.3.3",
         "open3d>=0.19.0",
-        # "pytorch3d>=0.7.8",
         "pip>=25.2",
         "plyfile>=1.1.2",
         "rich>=14.1.0",
-        "simple-knn>=0.0.0",
         "torch==2.4.1",
 ]
 
@@ -23,16 +21,22 @@ url = "https://download.pytorch.org/whl/cu124"
 explicit = true
 
 
+
 [tool.uv.sources]
 torch = [
     { index = "pytorch-cu124"}
 ]
 
+
+
+
 nvdiffrast = { git = "https://github.com/NVlabs/nvdiffrast.git", rev = "729261dc64c4241ea36efda84fbf532cc8b425b8" }
 simple-knn = { git = "https://gitlab.inria.fr/bkerbl/simple-knn.git"}
-# diff-gaussian-rasterization = { git = "https://github.com/graphdeco-inria/diff-gaussian-rasterization.git", branch="3dgs_accel"}
-# pytorch3d = { git = "https://github.com/facebookresearch/pytorch3d.git"} # in windows, $env:CUB_HOME="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.4"
+# diff-gaussian-rasterization = { git = "https://github.com/graphdeco-inria/diff-gaussian-rasterization.git"}
+pytorch3d = { git = "https://github.com/facebookresearch/pytorch3d.git"} # in windows, $env:CUB_HOME="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.4"
 
 
 [tool.uv.extra-build-dependencies]
+simple-knn = ["torch"]
 diff-gaussian-rasterization = ["torch"]
+pytorch3d = ["torch"]

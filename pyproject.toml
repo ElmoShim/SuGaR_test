@@ -12,6 +12,7 @@ dependencies = [
         "plyfile>=1.1.2",
         "rich>=14.1.0",
         "torch==2.4.1",
+        "vtk>=9.5.2",
 ]
 
 

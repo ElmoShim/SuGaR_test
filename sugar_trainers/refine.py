@@ -65,7 +65,7 @@ def refined_training(args):
     gs_checkpoint_path = args.checkpoint_path
     surface_mesh_to_bind_path = args.mesh_path
     mesh_name = surface_mesh_to_bind_path.split("/")[-1].split(".")[0]
-    iteration_to_load = args.iteration_to_load    
+    iteration_to_load = 7000   
     
     surface_mesh_normal_consistency_factor = args.normal_consistency_factor    
     n_gaussians_per_surface_triangle = args.gaussians_per_triangle
@@ -273,9 +273,8 @@ def refined_training(args):
             # Compute loss 
             loss = loss_fn(pred_rgb, gt_rgb)                                        
                 
-            # Surface mesh optimization            
-            surface_mesh = sugar.surface_mesh                                
-            loss = loss + surface_mesh_normal_consistency_factor * mesh_normal_consistency(surface_mesh)
+            # Surface mesh optimization                                      
+            loss = loss
             
             # Update parameters
             loss.backward()
@@ -348,7 +347,10 @@ def refined_training(args):
         
         # Export and save ply
         refined_gaussians = convert_refined_sugar_into_gaussians(sugar)
-        refined_gaussians.save_ply(os.path.abspath("./asdfasdfasdfowaiejfoaiejfj.ply"))
+
+
+        output_ply_path = os.path.abspath( os.path.join(args.output_dir, "final.ply") )
+        refined_gaussians.save_ply(output_ply_path)
         CONSOLE.print("Ply file exported. This file is needed for using the dedicated viewer.")
     
     return model_path

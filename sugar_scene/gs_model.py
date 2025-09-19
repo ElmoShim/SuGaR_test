@@ -159,14 +159,16 @@ class GaussianSplattingWrapper:
         self.training_cameras = CamerasWrapper(self.cam_list)
             
         self.gaussians = GaussianModel(self.model_params.sh_degree)
-        self.gaussians.load_ply(
-            os.path.join(
-                output_path,
-                "point_cloud",
-                "iteration_" + str(iteration_to_load),
-                "point_cloud.ply"
+
+        if iteration_to_load is not None:
+            self.gaussians.load_ply(
+                os.path.join(
+                    output_path,
+                    "point_cloud",
+                    "iteration_" + str(iteration_to_load),
+                    "point_cloud.ply"
+                    )
                 )
-            )
         
         self.background = torch.tensor(background, device='cuda', dtype=torch.float32)
 

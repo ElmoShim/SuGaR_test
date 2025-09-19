@@ -11,10 +11,9 @@ if __name__ == "__main__":
     refined_args = AttrDict({
         'scene_path': "input/A11",
         'checkpoint_path': "output/vanilla_gs/A11/",
-        'mesh_path': "input/A11/init_scaled.ply",      
-        'output_dir': "init_scaled_ply",
-        'iteration_to_load': 7000,
-        'normal_consistency_factor': 0.1,    
+        'mesh_path': "/mnt/DAS2/proj_3dgs/sugar/baseline.ply",      
+        'output_dir': "/mnt/DAS2/proj_3dgs/sugar/output",
+        'normal_consistency_factor': 0.0,    
         'gaussians_per_triangle': 6,        
         'n_vertices_in_fg': 1000000,
         'refinement_iterations': 15000,
